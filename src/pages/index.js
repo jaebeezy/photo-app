@@ -10,6 +10,7 @@ import Search from "../components/search";
 import Paginate from "../components/paginate";
 import Photos from "../components/photos";
 import Header from "../components/header";
+import Footer from "../components/footer";
 
 // styling
 import { GlobalStyle } from "../styles/global";
@@ -41,7 +42,7 @@ const App = (props) => {
   return (
     <>
       <Head>
-        <title>Pexels</title>
+        <title>Pexels Photo Search</title>
         <link
           href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo&display=swap"
           rel="stylesheet"
@@ -66,13 +67,21 @@ const App = (props) => {
           />
         </ViewingArea>
       )}
+      <Footer />
     </>
   );
 };
 
 export const getServerSideProps = async () => {
   // built-in next.js method for ssr
-  const response = await axios.get("v1/curated?per_page=10", config);
+  let response;
+  try {
+    response = await axios.get("v1/curated?per_page=10", config);
+  } catch (err) {
+    console.log(err);
+    // error handling
+    response = { data: { photos: [] } };
+  }
 
   return {
     // returning the server side rendered data as a prop

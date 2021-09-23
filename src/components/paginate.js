@@ -6,10 +6,8 @@ const Paginate = ({ pageData, setPhotos, setPageData }) => {
     // handler function to move on to the next page of photos
     try {
       const nextPagePhotos = await axios.get(pageData.next_page, config);
-      if (nextPagePhotos.status === 200) {
-        setPhotos(nextPagePhotos.data.photos);
-        setPageData(nextPagePhotos.data);
-      }
+      setPhotos(nextPagePhotos.data.photos);
+      setPageData(nextPagePhotos.data);
     } catch (error) {
       if (error.response.status === 429) {
         console.log("too many requests!");
@@ -21,10 +19,8 @@ const Paginate = ({ pageData, setPhotos, setPageData }) => {
     // handler function to move to the prev page of photos
     try {
       const prevPagePhotos = await axios.get(pageData.prev_page, config);
-      if (prevPagePhotos.status === 200) {
-        setPhotos(prevPagePhotos.data.photos);
-        setPageData(prevPagePhotos.data);
-      }
+      setPhotos(prevPagePhotos.data.photos);
+      setPageData(prevPagePhotos.data);
     } catch (error) {
       if (error.response.status === 429) {
         console.log("too many requests!");

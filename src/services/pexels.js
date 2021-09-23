@@ -15,12 +15,14 @@ export async function searchPhotos(query) {
       `v1/search?query=${query}&per_page=10`,
       config
     );
-    if (response.status === 200) {
-      return response.data;
-    }
+    return response.data;
   } catch (error) {
-    if (error.response.status === 429) {
-      console.log("too many requests!");
+    if (error.response) {
+      console.log(error.reseponse.status);
+    } else if (error.request) {
+      console.log(error.request);
+    } else {
+      console.log(Error, error.message);
     }
   }
 }
