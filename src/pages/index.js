@@ -31,12 +31,13 @@ const App = (props) => {
   const onFormSubmit = async (e) => {
     // handling form submit for search function
     e.preventDefault();
+    setSearch("");
+
     setLoading(true);
     const searchedPhotos = await searchPhotos(search);
     setPageData(searchedPhotos);
     setPhotos(searchedPhotos.photos);
     setLoading(false);
-    setSearch("");
   };
 
   return (
