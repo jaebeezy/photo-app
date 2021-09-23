@@ -70,7 +70,7 @@ const Photos = ({ photos }) => {
               <a
                 href={`${photo.photographer_url}`}
                 target="_blank"
-                rel="noopener"
+                rel="noreferrer noopener"
               >
                 Photo by {photo.photographer}
               </a>

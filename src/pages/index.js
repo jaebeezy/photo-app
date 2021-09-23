@@ -26,7 +26,7 @@ const App = (props) => {
     // grabbing the curated photos on initial render
     setPhotos(props.value.photos);
     setPageData(props.value);
-  }, []);
+  }, [props.value]);
 
   const onFormSubmit = async (e) => {
     // handling form submit for search function
